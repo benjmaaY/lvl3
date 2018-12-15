@@ -1,0 +1,29 @@
+<%- include('../_layouts/adminheader') %>
+    <h2 class="page-title">Add a page</h2>
+
+    <a href="/adminPages/pages" class="btn-sm btn purple-gradient">Back to all pages</a>
+
+    <br/>
+    <br/>
+    <form method="POST" action="/adminPages/add">
+        <div class="md-form">
+            <label for="form1">Title</label>
+            <input type="text" class="form-control" id="form1" name="title" value="<%= title %>" />
+        </div>
+
+        <div class="md-form">
+            <label for="">Slug</label>
+            <input type="text" class="form-control" name="slug" value="<%= slug %>" />
+        </div>
+
+        <div class="form-group">
+            <label for="">Content</label>
+            <textarea name="content" id="ta" class="form-control" cols="30" rows="10" placeholder="Content">
+                <%= content %>
+            </textarea>
+        </div>
+
+        <button class="btn btn-default">Submit</button>
+    </form>
+
+<%- include('../_layouts/adminfooter') %>

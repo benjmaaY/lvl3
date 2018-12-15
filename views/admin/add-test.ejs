@@ -1,0 +1,42 @@
+<%- include('../_layouts/adminheader') %>
+    <h2 class="page-title">Add a product</h2>
+
+    <a href="/adminProducts/products" class="btn-sm btn purple-gradient">Back to all products</a>
+
+    <br/>
+    <br/>
+
+    <form method="POST" action="/admintst/add">
+        <div class="md-form">
+            <label for="">Title</label>
+            <input type="text" class="form-control" name="title" value="<%= title %>" />
+        </div>
+
+        <div class="md-form">
+            <label for="">Description</label>
+            <textarea name="description" class="form-control md-textarea" cols="30" rows="10">
+                <%= description %>
+            </textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="">Category</label>
+            <select name="category" class="form-control">
+                <% category.forEach(function(cat) { %>
+                    <option value="<%= cat.slug %>">
+                        <%= cat.title %>
+                    </option>
+                <% }); %>
+            </select>
+        </div>
+
+        <div class="md-form">
+            <label for="">Price</label>
+            <input type="text" class="form-control" name="price" value="<%= price %>" />
+        </div>
+
+        <button class="btn btn-default" type="submit">Submit</button>
+    </form>
+
+
+    <%- include('../_layouts/adminfooter') %>

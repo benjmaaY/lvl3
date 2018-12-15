@@ -1,0 +1,18 @@
+<% include _layouts/header %>
+    <div class="row">
+    <div class="card text-center">
+  <div class="card-header">
+    Thanks for ordering!
+  </div>
+  <div class="card-body">
+    <h1 class="card-title font-weight-bold">Order sent...</h1>
+    <p class="card-text">Dear <%= order.lName %>, We have received order <span class="text-monospace bg-dark text-white rounded">#<%= order.order_id %></span> and we are checking it... You'll get an email very soon confirming or declining your order!</p>
+    <a href="/user/orders" class="btn btn-primary btn-sm"><i class="fa fa-clone left"></i>Visit your orders</a>
+  </div>
+  <div class="card-footer text-muted">
+    If there are any problems, you can <a href="#">contact us</a>.
+  </div>
+</div>
+     
+    </div>
+<% include _layouts/footer %>

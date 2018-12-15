@@ -1,0 +1,34 @@
+<%- include('../_layouts/adminheader') %>
+    <h2 class="page-title">Categories</h2>
+
+    <a href="/adminCategories/add" class="btn aqua-gradient btn-sm">Add a new category</a>
+
+    <br/>
+    <br/>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% categories.forEach(function(category) { %>
+                <tr>
+                    <td>
+                        <%= category.title %>
+                    </td>
+                    <td>
+                        <a href="/adminCategories/edit/<%= category.id %>">Edit</a>
+                    </td>
+                    <td>
+                        <a class="confirmDeletion" href="/adminCategories/delete/<%= category.id %>">Delete</a>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <%- include('../_layouts/adminfooter') %>

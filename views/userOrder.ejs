@@ -1,0 +1,299 @@
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+
+<br>
+<div class="row center container">
+<div class="col s12">
+    <div class="center">
+<a class="btn-small waves-effect waves-light red" href="/user/orders"><i class="fas fa-undo" style="font-size: 13px"></i> Go back to all orders</a>
+<p class="help" style="color:#ffffff;">
+  <div class="box card-panel z-depth-3">
+    <div class="merchant">
+      <img id="crickets" src="http://ishtyaqhabib.com/assets/images/forcodepen/cricketsCafe.png" />
+      <h5 class="center-align">Restaurent name</h5>
+      
+        <p><%= order.submit %></p>
+      <div class="row">
+        <div class="col s6">
+        <p>Name: <%= order.fName %> <%= order.lName %></p>
+        <% if(order.email == "") { %>
+        <% } else { %>
+        <p style="margin-top: -10px">Email: <%= order.email %></p>
+        <% } %>
+        <p style="margin-top: -10px">Paymant: <%= order.payment %></p>
+        </div>
+    
+      <div class="col s6">
+      <p>Address: <%= order.address %></p>
+      <% if(order.address2 == "") { %>
+      <% } else { %>
+      <p style="margin-top: -10px">Second Address: <%= order.address2 %></p>
+      <% } %> 
+
+      </div>
+      <hr>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col s12">
+            <% if(order.notes == null) { %>
+                <p style="margin-top: -6px; margin-bottom: -10px">Notes unvailble</p>
+            <% } else { %>
+                <p style="margin-top: -6px; margin-bottom: -10px">Notes: <%= order.notes %></p>
+            <% } %>
+        </div>
+    </div>
+    <hr>
+    <div class="invoice">
+      <table class="highlight">
+        <thead>
+          <tr>
+            <th>QTY</th>
+            <th>ITEM</th>
+            <th class="right-align">PRICE</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% var total = 0 ;%>
+        <% order.order.forEach(function (order) { %>
+            <tr>
+                <td><%= order.qty %></td>
+                <td><%= order.title %></td>
+                <td class="right-align"><% var sub = parseFloat(order.qty * order.price).toFixed(2) %><%= order.price %>TND</td>
+                
+                <% total += +sub %>
+            </tr>
+        <% }) %>
+          <tr>
+            <td></td>
+            <td class="right-align">Tax</td>
+            <td class="right-align">0.00 TND</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="right-align bold">Total</td>
+            <td class="right-align bold"><%= parseFloat(total).toFixed(2) %>TND</td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+    
+</div>
+</div>
+  </div>
+  </div>
+  <!-- -->
+  
+</div>
+<style>
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  box-sizing: border-box;
+}
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  position: absolute;
+  /*     top: 50%; */
+  left: 50%;
+  transform: translate(-50%, 0%);
+  -webkit-transform: translate(-50%, 0%);
+  -ms-transform: translate(-50%, 0%);
+  transition: 1s all ease-in-out;
+  -webkit-transition: 1s all ease-in-out;
+  -moz-transition: 1s all ease-in-out;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-panel {
+  padding-bottom: 0px;
+}
+
+#crickets {
+  width: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table td:nth-child(1) {
+  width: 34px;
+}
+
+table td:nth-child(3) {
+  width: 65px;
+}
+
+.bold {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.credit-card-box {
+  width: 400px;
+  height: 280px;
+  background: linear-gradient(135deg, #03A9F4, #1976D2);
+  border-radius: 15px;
+  color: #fff !important;
+  text-shadow: 0 1px 1px hsla(0, 0, 0, 0.3);
+}
+
+.input-field.cvv,
+.input-field.number,
+.input-field.card-holder,
+.input-field.card-expiration-date {
+  display: inline-block;
+}
+
+.input-field.cvv {
+  top: -6px;
+  margin-left: 6px !important;
+}
+
+.input-field label {
+  color: #fff;
+  left: 0rem;
+}
+
+.select-wrapper+label {
+  top: -1.8rem;
+}
+
+.select-wrapper span.caret {
+  top: 2px;
+  color: #fff;
+}
+
+input:not([type]),
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=url],
+input[type=time],
+input[type=date],
+input[type=datetime-local],
+input[type=tel],
+input[type=number],
+input[type=search],
+textarea.materialize-textarea,
+.select-wrapper input.select-dropdown {
+  border-bottom: 1px solid #fff;
+}
+
+.input-card-number {
+  font-size: 30px !important;
+  width: 70px !important;
+  display: inline-block;
+  margin-right: 5px !important;
+}
+
+.input-card-cvv {
+  width: 30px !important;
+  display: inline-block;
+}
+
+.card-holder {
+  width: 150px !important;
+  margin-right: 10px;
+}
+
+.card-expiration-date {
+  display: inline !important;
+}
+
+.card-expiration-date .select-wrapper,
+.card-expiration-date input {
+  display: inline !important;
+  width: 50px !important;
+}
+
+.card-expiration-date .select-wrapper {
+  margin-right: 5px;
+}
+
+.card-expiration-date ul,
+.card-expiration-date li span {
+  width: 50px !important;
+}
+
+.logo img {
+  position: relative;
+  top: 0px;
+  left: 290px;
+  width: 60px;
+  filter: invert(1);
+  -moz-filter: invert(1);
+  -webkit-filter: invert(1);
+}
+
+.checkout {
+  margin: 0px;
+}
+
+.btn-large {
+  margin: 10px 0%;
+  /*   width: 100%; */
+}
+
+.help {
+  text-align: center;
+}
+
+.animation-element {
+  opacity: 0;
+  position: relative;
+}
+/*animation element sliding left*/
+
+.animation-element.slide-left {
+  opacity: 0;
+  -moz-transition: all 500ms linear;
+  -webkit-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  transition: all 500ms linear;
+  -moz-transform: translate3d(100px, -10px, 100px);
+  -webkit-transform: translate3d(100px, -10px, 100px);
+  -o-transform: translate(100px, -10px);
+  -ms-transform: translate(100px, -10px);
+  transform: translate3d(100px, -10px, 100px);
+}
+
+.animation-element.slide-left.in-view {
+  opacity: 1;
+  -moz-transform: translate3d(0px, 0px, 0px);
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  -o-transform: translate(0px, 0px);
+  -ms-transform: translate(0px, 0px);
+  transform: translate3d(0px, 0px, 0px);
+}
+
+.credit-card-box.animation-element:hover {
+    -moz-transition: all 200ms linear;
+  -webkit-transition: all 200ms linear;
+  -o-transition: all 200ms linear;
+  transition: all 200ms linear;
+  -moz-transform: translate3d(0px, -2px, 0px);
+  -webkit-transform: translate3d(0px, -2px, 0px);
+  -o-transform: translate(0px, -2px);
+  -ms-transform: translate(0px, -2px);
+  transform: translate3d(0px, -2px, 0px);
+  box-shadow: 0 16px 28px 0 rgba(0,0,0,0.22),0 25px 55px 0 rgba(0,0,0,0.21);
+</style>
+<script>
+  $(document).ready(function() {
+        $('select').material_select();
+    });
+</script>

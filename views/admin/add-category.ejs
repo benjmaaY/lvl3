@@ -1,0 +1,18 @@
+<%- include('../_layouts/adminheader') %>
+    <h2 class="page-title">Add a category</h2>
+
+    <a href="/adminCategories/categories" class="btn-sm btn purple-gradient">Back to all categories</a>
+
+    <br/>
+    <br/>
+
+    <form method="POST" action="/adminCategories/add">
+        <div class="md-form">
+            <label for="">Title</label>
+            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title" />
+        </div>
+
+        <button class="btn btn-default">Submit</button>
+    </form>
+
+<%- include('../_layouts/adminfooter') %>

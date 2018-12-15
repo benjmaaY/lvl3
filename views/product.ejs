@@ -1,0 +1,67 @@
+<% include _layouts/header %>
+<br>
+                    <a href="http://localhost:3000/" class="btn btn-primary btn-sm my-0 p waves-effect waves-light" >Go back to products </a>
+
+    <div class="row">
+
+    <div class="row wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
+        <!--Grid column-->
+        <div class="col-md-6 mb-4" style="max-width: 500px;">
+          <img src="/product_images/<%= product.id %>/<%= product.image %>" class="img-fluid" alt="">
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4" >
+
+          <!--Content-->
+          <div class="p-4" >
+
+            <div class="mb-3">
+              <a href="">
+                <span class="badge purple mr-1"><%= cat %></span>
+              </a>
+            </div>
+<h1 class="page-header">
+            <%= product.title %>
+        </h1>
+            <p class="lead">
+              <span><%= parseFloat(product.price).toFixed(2) %> TND</span>
+            </p>
+
+            <p class="lead font-weight-bold">Description:</p>
+            <p><%= product.description %></p>
+            <form class="d-flex justify-content-left">
+            <% if (loggedIn) { %>
+                <a href="/cart/add/<%= product.slug %>" class="btn btn-primary btn-md my-0 p waves-effect waves-light" >Add to cart <i class="fa fa-shopping-cart ml-1"></i></a>
+                
+              </button>
+            <% } else { %>
+                <p>You must be logged in to purchase items.</p>
+            <% } %>
+
+            </form>
+
+          </div>
+          <!--Content-->
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+
+        <div class="col-xs-12">
+            <ul class="gallery">
+                <% galleryImages.forEach(function(image) { %>
+                    <% if(image != "thumbs") { %>
+                        <li>
+                            <a data-fancybox="gallery" href="/product_images/<%= product.id %>/gallery/<%= image %>">
+                                <img src="/product_images/<%= product.id %>/gallery/thumbs/<%= image %>" alt="" />
+                            </a>
+                        </li>
+                    <% } %>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+<% include _layouts/footer %>

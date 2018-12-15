@@ -1,0 +1,80 @@
+        
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+        <div class="row container"> 
+            <div class="col s12">
+                <h2 class="center" style="font-weight: bold;">Confirming order <span style="color: #9e9d24">#<%= id %></span></h2>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input class="" type="tel" value="<%= number %>" name="number" id="number" placeholder="Enter phone number...">
+                            <label for="number">number</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <textarea class="materialize-textarea" type="text" name="msg" id="msg" placeholder="Restaurent notes:"></textarea>
+                        </div>
+                        <div class="input-field col s12">
+                            <input type="text" id="time" name="time" class="timepicker">
+                            <label for="time">Order should be ready at:</label>
+                        </div>
+                        <p class="response"></p>
+                    </div>
+                    
+                        <center>
+                        <input type="button" class="btn center deep-orange accent-2" id="button" value="Send Text" class="button button-primary">
+                        </center>
+            </div>  
+        </div>        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+        <script>
+        
+$('.timepicker').timepicker({
+        container: '#time22',
+            template: 'modal',
+            twelveHour: false
+});
+        const numberInput = document.getElementById('number'),
+      textInput = document.getElementById('msg'),
+      decliine = document.getElementById('decline')
+      button = document.getElementById('button'),
+      response = document.querySelector('.response');
+button.addEventListener('click', send, false)
+
+
+const socket = io()
+socket.on('smsStatus', (data) => {
+    response.innerHTML = '<h5>Confirmation sent to ' + numberInput.value +'</h5>'
+})
+
+function send() {
+    const time = $('.timepicker').val()
+    const number = numberInput.value.replace(/\D/g, '')
+    const text = textInput.value
+
+    fetch('/adminorders/confirm', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify({number: number, text: text, time: time})
+    })
+    setTimeout(function() {
+                response.innerHTML = '<h5>Confirmation sent... Closing window!</h5>'
+                setTimeout(function() {
+                    window.close();
+                }, 1000)
+            }, 3000)
+    .then((res) => {
+            console.log(res)
+            res.redirect('adminorders/orders')
+
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+}
+        </script>

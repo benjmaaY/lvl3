@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Restaurent - <%= title %></title>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/css/mdb.min.css" rel="stylesheet">
+</head>
+
+<body>
+    
+<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+            
+
+                <!-- Brand -->
+                <a class="navbar-brand waves-effect" href="/home">
+                    <strong class="blue-text">Restaurent</strong>
+                </a>
+
+                <!-- Collapse -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Links -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <!-- Left -->
+                    <ul class="navbar-nav mr-auto">
+                        <!--<li class="nav-item"><a class="nav-link waves-effect" href="/"></a></li>
+                        -->   
+                    </ul>
+
+                    <!-- Right -->
+                    
+                    <ul class="navbar-nav nav-flex-icons">
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="/cart/checkout">
+                            <span class="badge red z-depth-1 mr-1"> <% if(typeof cart != "undefined") { %>
+                                <%= cart.length%>
+                            <% } else { %>
+                                0
+                            <% } %> </span>
+                                <i class="fa fa-shopping-cart"></i>
+                            <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+                        </a>
+                    </li>
+                    <% if(user) { %>
+                    <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <i class="fa fa-user"></i> <b>Hi '<%= user.username %>'  !</b> </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+              <% if(user && user.admin == 1) { %>
+                    <a class="dropdown-item waves-effect waves-light" href="/adminCategories/categories">Admin area</a>
+                    <% } %>
+                <a class="dropdown-item waves-effect waves-light" href="/user/orders">My orders</a>
+              <a class="dropdown-item waves-effect waves-light" href="/user/logout">Log out</a>
+            </div>
+          </li>
+                    <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="/user/register">Register
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <hr>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="/user/login">Login
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <% } %>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="/">Shop
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+<br><br><br>
+    <div class="container">
+        <%- messages('messages', locals) %>
+
+        <% if(errors) { %>
+            <% errors.forEach(function(error) { %>
+                <div class="alert alert-danger">
+                    <%= error.msg %>
+                </div>
+            <% }); %>
+        <% } %>
+
+        

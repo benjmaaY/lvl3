@@ -1,0 +1,284 @@
+<%- include('../_layouts/adminheader') %>
+    <h2 class="page-title">Orders... </h2>
+    <hr>
+    
+    <p style="margin-top: -10px">Search in orders by customer id:</p>
+    <% var hey %>
+    <!-- Material form row -->
+<form method="POST" action="/adminorders/orders/search">
+  <!-- Grid row -->
+  <div class="form-row">
+    <!-- Grid column -->
+    <div class="col-md-10">
+      <div class="md-form form-md">
+  <input type="text" id="inputLGEx" name="orderi" class="form-control form-control-md">
+  <label for="inputLGEx">Order ID:</label>
+  
+</div>
+    </div>
+    <div class="col-md-2">
+    <button class="btn aqua-gradient btn-sm btn-block" style="margin-top: 32px">Search</button>
+    </div>
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    
+    <!-- Grid column -->
+  </div>
+  <!-- Grid row -->
+</form>
+<div class="row">
+<div class="" style="">
+<!-- Material form row -->
+    <table class="table-responsive table table-striped" id="orders">
+    
+<br>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Second Address</th>
+                <th>Payment</th>
+                <th>Order</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% orders.forEach(function(order) { %>
+            <tr>
+            
+                <td><%= order.submit %></td>
+                <td><%= order.fName %></td>
+                <td><%= order.lName%></td>
+                <td><%= order.email%></td>
+                <td><%= order.address%></td>
+                <td><%= order.address2%></td>
+                <td><%= order.payment%></td>
+                <td><a href="/adminorders/<%= order._id %>">Open</a></td>
+            </tr>
+        <% }) %>
+            
+        </tbody>
+        
+    </table>
+    
+    <span class="text-monospace" style="font-size: 15px">Page number <span id="num55"></span></span>
+    <!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  
+        <p class="response"></p>
+<div id="time22"></div>
+<div class="modal-dialog" role="document">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New order #<span id="order_id" ></span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center">Date: <span id="submit"></span></p>
+        <hr style="width: 90px">
+        <p class="name">Name: <span id="fName"></span> <span id="lName"></span></p>
+        <p class="email">Email: <span id="email"></span></p>
+        <p class="payment">Payment: <span id="payment"></span></p>
+        <p class="address">Address: <span id="address"></span>, <span id="address2"></span></p>
+        <p class="number">Number: <span id="number"></span></p>
+        <p class="notes">Notes: <span id="notes"></span></p>
+        
+        <div class="mytablediv table-responsive">
+        
+        </div>
+        <hr>
+        <h5>Confirmation:</h5>
+        <div class="input-field col s12">
+          <input type="text" id="fNumber" name="fNumber" class="">
+        </div>
+        <div class="input-field col s12">
+          <input type="text" id="order_id" name="order_id" class="">
+        </div>
+        <div class="input-field col s12">
+          <input type="text" id="time" name="time" class="timepicker">
+          <label for="time">Order should be ready at:</label>
+        </div>
+        <hr>
+        
+      </div>
+      <div style="background-color: grey; border-radius: 5px">
+        <button type="button" class="float-left btn btn-secondary" data-dismiss="modal">Decline</button>
+        <button type="button" onClick="send()" id="confirm" class="float-right btn btn-primary">Confirm order</button>
+      </div>
+    </div>
+  </div>
+</div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal">
+  Launch demo modal
+</button>
+    </div>
+    </div>
+    
+    <script src="/socket.io/socket.io.js"></script>
+        <script>
+        
+        </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<style>
+  .timepicker-modal{
+    top: 30% !important;
+    bottom: 34% !important;
+  }
+</style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.js"></script>
+
+     <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+    
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.timepicker');
+    var instances = M.Timepicker.init(elems, options);
+  });
+          
+    </script>
+      <script>
+      
+</script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.js"></script>
+    <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
+<script src="https://cdn.awesomefunctions.com/awesome-functions.min.js"></script>
+    <script>
+    var $table = document.getElementById("orders"),
+// number of rows per page
+$n = 5,
+// number of rows of the table
+$rowCount = $table.rows.length,
+// get the first cell's tag name (in the first row)
+$firstRow = $table.rows[0].firstElementChild.tagName,
+// boolean var to check if table has a head row
+$hasHead = ($firstRow === "TH"),
+// an array to hold each row
+$tr = [],
+// loop counters, to start count from rows[1] (2nd row) if the first row has a head tag
+$i,$ii,$j = ($hasHead)?1:0,
+// holds the first row if it has a (<TH>) & nothing if (<TD>)
+$th = ($hasHead?$table.rows[(0)].outerHTML:"");
+// count the number of pages
+var $pageCount = Math.ceil($rowCount / $n);
+// if we had one page only, then we have nothing to do ..
+
+if ($pageCount > 1) {
+	// assign each row outHTML (tag name & innerHTML) to the array
+	for ($i = $j,$ii = 0; $i < $rowCount; $i++, $ii++)
+		$tr[$ii] = $table.rows[$i].outerHTML;
+	// create a div block to hold the buttons
+	$table.insertAdjacentHTML("afterend","<div class='btn btn-primary' id='buttons'></div");
+	// the first sort, default page is the first one
+	sort(1);
+}
+
+// ($p) is the selected page number. it will be generated when a user clicks a button
+function sort($p) {
+	/* create ($rows) a variable to hold the group of rows
+	** to be displayed on the selected page,
+	** ($s) the start point .. the first row in each page, Do The Math
+	*/
+	var $rows = $th,$s = (($n * $p)-$n);
+	for ($i = $s; $i < ($s+$n) && $i < $tr.length; $i++)
+		$rows += $tr[$i];
+	
+	// now the table has a processed group of rows ..
+	$table.innerHTML = $rows;
+	// create the pagination buttons
+  document.getElementById("buttons").innerHTML = pageButtons($pageCount,$p);
+  document.getElementById("num55").innerHTML = $p
+	// CSS Stuff
+	document.getElementById("id"+$p).setAttribute("class","active");
+}
+
+
+// ($pCount) : number of pages,($cur) : current page, the selected one ..
+function pageButtons($pCount,$cur) {
+	/* this variables will disable the "Prev" button on 1st page
+	   and "next" button on the last one */
+	var	$prevDis = ($cur == 1)?"disabled":"",
+		$nextDis = ($cur == $pCount)?"disabled":"",
+		/* this ($buttons) will hold every single button needed
+		** it will creates each button and sets the onclick attribute
+		** to the "sort" function with a special ($p) number..
+		*/
+		$buttons = "<input type='button' value='&lt;&lt; Prev' onclick='sort("+($cur - 1)+")' "+$prevDis+">";
+	for ($i=1; $i<=$pCount;$i++)
+		$buttons += "<input type='button' id='id"+$i+"'value='"+$i+"' onclick='sort("+$i+")'>";
+	$buttons += "<input type='button' value='Next &gt;&gt;' onclick='sort("+($cur + 1)+")' "+$nextDis+">";
+	return $buttons;
+}
+    Pusher.logToConsole = true;
+    var pusher = new Pusher('658311788cfd8fac77ab', {
+      cluster: 'eu',
+      forceTLS: true
+    });
+
+$('.timepicker').timepicker({
+        container: '#time22',
+            template: 'modal',
+            twelveHour: false
+});
+    $('#confirm').on('click', function() {
+      console.log()
+        
+    });
+    var channel = pusher.subscribe('orders');
+    channel.bind('order1', function data(data) {
+      var Columns = ["TITLE", "QTY", "PRICE", "IMAGE"];
+
+var tbl = js.CreateTable(data.order.order,Columns);
+$('#basicExampleModal').modal()
+//Out put table 
+$('.mytablediv').html(tbl);
+console.log(data.order.notes)
+      const date = data.order.submit
+      const lName = data.order.lName
+      const fName = data.order.fName
+      const email = data.order.email
+      const address = data.order.address
+      const address2 = data.order.address2
+      const payment = data.order.payment
+      const order = data.order.order
+      const number = data.order.number
+      const notes = data.order.notes
+      const order_id = data.order.order_id
+      document.getElementById("lName").innerHTML = lName;
+      document.getElementById("fName").innerHTML = fName;
+      document.getElementById("email").innerHTML = email;
+      document.getElementById("address").innerHTML = address;
+      document.getElementById("address2").innerHTML = address2;
+      document.getElementById("payment").innerHTML = payment;
+      //document.getElementById("order").innerHTML = order;
+      document.getElementById("number").innerHTML = number;
+      document.getElementById("notes").innerHTML = notes;
+      document.getElementById("order_id").innerHTML = order_id;
+      document.getElementById("submit").innerHTML = date;
+      document.getElementById("fNumber").value = number; 
+       document.getElementById("order_id").value = order_id; 
+    const time = $('.timepicker').val()
+    });
+    function send() {
+      
+      const link = 'http://localhost:3000/adminorders/confirm/' + document.getElementById("fNumber").value + '/' + document.getElementById("order_id").value
+      window.open(link);
+    }
+  </script>
+<script>
+
+    </script>
+    <%- include('../_layouts/adminfooter') %>

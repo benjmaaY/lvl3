@@ -1,0 +1,44 @@
+{
+  "name": "shoppingcartnode",
+  "version": "1.0.0",
+  "description": "Shopping cart made in Node JS",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FabianVarela/ShoppingCartNode.git"
+  },
+  "author": "Fabian Varela Bonett",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FabianVarela/ShoppingCartNode/issues"
+  },
+  "homepage": "https://github.com/FabianVarela/ShoppingCartNode#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^6.0.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-fileupload": "^0.4.0",
+    "express-messages": "^1.0.1",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.0.0",
+    "fs-extra": "^5.0.0",
+    "md-date-time-picker": "^2.3.0",
+    "mkdirp": "^0.5.1",
+    "mongoose": "^5.0.4",
+    "nexmo": "^2.4.0",
+    "nodemon": "^1.14.12",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pusher": "^2.2.0",
+    "resize-img": "^1.1.2",
+    "socket.io": "^2.2.0",
+    "tabulator": "^0.2.38",
+    "uuid": "^3.3.2"
+  }
+}
